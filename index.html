@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,600;0,700;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <title>DFS</title>
+
+    <script src="./Node.js"></script>
+    <script src="./LinkedList.js"></script>
+    <script src="./Vertex.js"></script>
+    <script src="./Edge.js"></script>
+    <script src="./Graph.js"></script>
+    <script src="./main.js"></script>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            width: 90%;
+            height: 100%;
+            padding: 0;
+            margin-left: 1rem;
+        }
+
+        span {
+            font-weight: 600;
+        }
+
+        input {
+            width: 5rem;
+            height: 3rem;
+            text-align: center;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+        }
+
+        button {
+            margin-left: 1rem;
+            height: 1.5rem;
+            border: none;
+        }
+
+        .header,
+        h2 {
+            align-items: center;
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .name_group {
+            font-size: 1.2rem;
+        }
+
+        .name_group p {
+            font-weight: 400;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin: 0.5rem;
+        }
+
+        .input {
+            margin-top: 1rem;
+        }
+
+        .input_vertex {
+            display: flex;
+            align-items: center;
+        }
+
+        .input_edge {
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .title_graph {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .example {
+            margin: 0;
+            margin-top: 1rem;
+            background-color: grey;
+            color: white;
+        }
+
+        .btn_add {
+            background-color: cadetblue;
+            color: white;
+        }
+
+        .btn_delete {
+            background-color: firebrick;
+            color: white;
+        }
+
+        .output {
+            color: darkcyan;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h2 class="name_group">Nhóm 13:<br />
+            <p>- Lê Quang Tuấn - <span>Nhóm trưởng</span></p>
+            <p>- Nguyễn Khắc Thơ</p>
+            <p>- Nguyễn Đình Sáng</p>
+        </h2>
+        <h1 class="title">Sử dụng danh sách móc nối để thực hiện tìm kiếm trên đồ thị (DFS)</h1>
+    </div>
+    <div class="input">
+        <div class="input_vertex">
+            <input value="A" id="vertex" />
+            <button class="btn_add" onclick="addVertex()">Thêm đỉnh</button>
+            <button class="btn_delete" onclick="removeVertex()">Xóa đỉnh</button>
+        </div>
+        <div class="input_edge">
+            <input id="vertexA" />&ensp;<span>--</span>&ensp;
+            <input id="vertexB" />
+            <button class="btn_add" onclick="addEdge()">Nối đỉnh</button>
+            <button class="btn_delete" onclick="removeEdge()">Xóa ghép nối</button>
+        </div>
+    </div>
+    <button class="example" onclick="addSampleVertex()">Ví dụ cài sẵn</button><br />
+    <h2 class="title_graph">Đồ thị:</h2>
+    <span class="output" id="result"> EMPTY</span>
+</body>
+
+</html>
