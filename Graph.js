@@ -67,6 +67,32 @@ class Graph {
         }
     }
 
+    DFSRecursion(stack) {
+        if (!stack.isEmpty()) {
+            const vertex = stack.peek().data;
+            vertex.visited = true;
+            for (let i = vertex.childList.size; i > 0; i--) {
+                const node = vertex.childList.getNode(i);
+                const vertexB = this.vertexList.searchNode(node.vertexB);
+                if (vertexB && !vertexB.visited) {
+                    stack.push(new Node(vertexB));
+                    this.DFSRecursion(stack);
+                }
+            }
+        }
+    }
+
+    DFS(fromVertex, toVertex) {
+        this.resetVisited();
+        const vertex = this.vertexList.searchNode(fromVertex);
+        if (vertex) {
+            let stack = new Stack();
+            stack.push(new Node(vertex));
+            this.DFSRecursion(stack);
+            console.log('DFS = ' + stack.print());
+        }
+    }
+
     resetVisited() {
         let temp = this.vertexList.head;
         while (temp) {
@@ -83,10 +109,10 @@ class Graph {
         let temp = this.vertexList.head;
         let count = this.vertexList.size;
         while (temp) {
-            childList = count-- + '.&ensp;' + temp.getName() + '&nbsp;<span style="color: brown; font-weight: 400; font-style: italic;">(' + temp.childList.size + ' đỉnh kề):&ensp;</span>' + temp.getChildList() + '<br/>' + childList;
+            childList = count-- + '.&ensp;' + temp.getName() + '&nbsp;<span style="color: brown; font-weight: 400; font-style: italic;">(' + temp.childList.size + ' đỉnh con):&ensp;</span>' + temp.getChildList() + '<br/>' + childList;
             temp = temp.next;
         }
 
-        return vertexList + 'Danh sách đỉnh: <br/>' + childList;
+        return vertexList + 'Danh sách đỉnh con: <br/>' + childList;
     }
 }

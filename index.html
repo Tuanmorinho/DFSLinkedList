@@ -17,6 +17,7 @@
     <script src="./Vertex.js"></script>
     <script src="./Edge.js"></script>
     <script src="./Graph.js"></script>
+    <script src="./Stack.js"></script>
     <script src="./main.js"></script>
     <style>
         body {
@@ -48,6 +49,11 @@
 
         .header,
         h2 {
+            align-items: center;
+        }
+
+        h3 {
+            display: flex;
             align-items: center;
         }
 
@@ -134,8 +140,11 @@
         </div>
     </div>
     <button class="example" onclick="addSampleVertex()">Ví dụ cài sẵn</button><br />
+    <button class="example" onclick="DFS()">DFS</button>&ensp;<p>(F12 để xem kết quả)</p><br />
     <h2 class="title_graph">Đồ thị:</h2>
-    <span class="output" id="result"> EMPTY</span>
+    <span class="output" id="result"> EMPTY</span><br /><br />
+    <h3>So = {&ensp;<input id="xp" />&ensp;}</h3>
+    <h3>DICH = {&ensp;<input id="dich" />&ensp;}</h3>
 </body>
 
 </html>

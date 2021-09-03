@@ -21,6 +21,13 @@ function addSampleVertex() {
     printGraphInfo();
 }
 
+function DFS() {
+    const vertexNameStart = document.getElementById('xp').value;
+    const vertexNameEnd = document.getElementById('dich').value;
+    if (vertexNameStart.trim() === '' || vertexNameEnd.trim() === '') return;
+    graph.DFS(vertexNameStart.trim(), vertexNameEnd.trim());
+}
+
 function printGraphInfo() {
     document.getElementById('result').innerHTML = graph.getInfor();
 }

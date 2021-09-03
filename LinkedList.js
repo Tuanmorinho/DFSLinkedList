@@ -1,15 +1,19 @@
+// Lớp danh sách móc nối
 class LinkedList {
+    // Thuộc tính gồm head, size - kích thước
     constructor() {
         this.head = null;
         this.size = 0;
     }
 
+    // Hàm chèn Node
     insertNode(node) {
         node.next = this.head;
         this.head = node;
         this.size++;
     }
 
+    //Hàm tìm kiếm Node
     searchNode(value) {
         let temp = this.head;
         let index = 0;
@@ -23,6 +27,7 @@ class LinkedList {
         return null;
     }
 
+    // Hàm xóa Node
     deleteNode(value) {
         let prevNode = null;
         let temp = this.head;
@@ -41,6 +46,7 @@ class LinkedList {
         }
     }
 
+    // Hàm lấy Node
     getNode(index) {
         let temp = this.head;
         let i = 1;
@@ -50,6 +56,7 @@ class LinkedList {
         return temp;
     }
 
+    // Hàm lấy danh sách Node
     getList() {
         let temp = this.head;
         let output = '';
