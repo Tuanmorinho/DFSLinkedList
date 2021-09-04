@@ -78,9 +78,7 @@ class Graph {
         if (vertex.data !== vertexEnd) {
             for (let i = vertex.edgeList.size; i > 0; i--) {
                 const node = vertex.edgeList.getNode(i);
-                console.log('node: ', node);
                 const vertexB = this.vertexList.searchNode(node.vertexB);
-                console.log('vertexB: ', vertexB);
                 if (vertexB && !vertexB.visited) {
                     if (vertexB.data === vertexEnd) {
                         linkedlist.insertNode(new Node(vertexB));
