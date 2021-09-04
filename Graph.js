@@ -103,7 +103,7 @@ class Graph {
             let linkedlist = new LinkedList();
             linkedlist.insertNode(new Node(vertexStart));
             this.DFS(linkedlist, vertexEnd.data);
-            console.log('DONG = {' + linkedlist.print() + ' }');
+            console.log('DONG = { ' + linkedlist.print() + ' }');
         }
     }
 
