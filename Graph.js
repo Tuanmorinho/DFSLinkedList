@@ -3,6 +3,7 @@ class Graph {
         this.vertexList = new LinkedList();
     }
 
+    // Thêm đỉnh
     addVertex(vertexName) {
         if (!this.vertexList.searchNode(vertexName)) {
             const newVertex = new Vertex(vertexName);
@@ -10,6 +11,7 @@ class Graph {
         }
     }
 
+    // Thêm cạnh
     addEdge(vertexAName, vertexBName) {
         if (vertexAName === vertexBName) return;
 
@@ -19,30 +21,32 @@ class Graph {
             const newEdgeAB = new Edge(vertexAName, vertexBName);
             const newEdgeBA = new Edge(vertexBName, vertexAName);
 
-            const edgeA = vertexA.childList.searchNode(vertexBName);
-            const edgeB = vertexB.childList.searchNode(vertexAName);
+            const edgeA = vertexA.edgeList.searchNode(vertexBName);
+            const edgeB = vertexB.edgeList.searchNode(vertexAName);
             if (!edgeA) {
-                vertexA.childList.insertNode(newEdgeAB);
+                vertexA.edgeList.insertNode(newEdgeAB);
             }
             if (!edgeB) {
-                vertexB.childList.insertNode(newEdgeBA);
+                vertexB.edgeList.insertNode(newEdgeBA);
             }
         }
     }
 
+    // Check cạnh
     hasEdge(vertexAName, vertexBName) {
         if (vertexAName === vertexBName) return false;
 
         const vertexA = this.vertexList.searchNode(vertexAName);
         const vertexB = this.vertexList.searchNode(vertexBName);
         if (vertexA && vertexB) {
-            if (vertexA.childList.searchNode(vertexBName)) {
+            if (vertexA.edgeList.searchNode(vertexBName)) {
                 return true;
             }
         }
         return false;
     }
 
+    // Xóa cạnh
     removeEdge(vertexAName, vertexBName) {
         if (vertexAName === vertexBName) return;
 
@@ -50,49 +54,60 @@ class Graph {
         const vertexB = this.vertexList.searchNode(vertexBName);
         console.log(vertexA, vertexB);
         if (vertexA && vertexB) {
-            vertexA.childList.deleteNode(vertexBName);
-            vertexB.childList.deleteNode(vertexAName);
+            vertexA.edgeList.deleteNode(vertexBName);
+            vertexB.edgeList.deleteNode(vertexAName);
         }
     }
 
+    // Xóa đỉnh
     removeVertex(vertexName) {
         const vertex = this.vertexList.searchNode(vertexName);
         if (vertex) {
-            let temp = vertex.childList.head;
+            let temp = vertex.edgeList.head;
             while (temp) {
                 this.removeEdge(vertex.getName(), temp.getName());
-                temp = vertex.childList.head;
+                temp = vertex.edgeList.head;
             }
             this.vertexList.deleteNode(vertexName);
         }
     }
 
-    DFSRecursion(stack) {
-        if (!stack.isEmpty()) {
-            const vertex = stack.peek().data;
-            vertex.visited = true;
-            for (let i = vertex.childList.size; i > 0; i--) {
-                const node = vertex.childList.getNode(i);
+    DFS(linkedlist, vertexEnd) {
+        const vertex = linkedlist.getNode(1).data;
+        vertex.visited = true;
+        if (vertex.data !== vertexEnd) {
+            for (let i = vertex.edgeList.size; i > 0; i--) {
+                const node = vertex.edgeList.getNode(i);
+                console.log('node: ', node);
                 const vertexB = this.vertexList.searchNode(node.vertexB);
+                console.log('vertexB: ', vertexB);
                 if (vertexB && !vertexB.visited) {
-                    stack.push(new Node(vertexB));
-                    this.DFSRecursion(stack);
+                    if (vertexB.data === vertexEnd) {
+                        linkedlist.insertNode(new Node(vertexB));
+                        break;
+                    } else {
+                        linkedlist.insertNode(new Node(vertexB));
+                        this.DFS(linkedlist, vertexEnd);
+                    }
+                    break;
                 }
             }
         }
     }
 
-    DFS(fromVertex, toVertex) {
+    callDFS(fromVertex, toVertex) {
         this.resetVisited();
-        const vertex = this.vertexList.searchNode(fromVertex);
-        if (vertex) {
-            let stack = new Stack();
-            stack.push(new Node(vertex));
-            this.DFSRecursion(stack);
-            console.log('DFS = ' + stack.print());
+        const vertexStart = this.vertexList.searchNode(fromVertex);
+        const vertexEnd = this.vertexList.searchNode(toVertex);
+        if (vertexStart && vertexEnd) {
+            let linkedlist = new LinkedList();
+            linkedlist.insertNode(new Node(vertexStart));
+            this.DFS(linkedlist, vertexEnd.data);
+            console.log('DONG = {' + linkedlist.print() + ' }');
         }
     }
 
+    // Reset biến boolean check đỉnh đã duyệt
     resetVisited() {
         let temp = this.vertexList.head;
         while (temp) {
@@ -101,18 +116,19 @@ class Graph {
         }
     }
 
+    // Hiển thị Đồ thị
     getInfor() {
         let vertexList = 'Danh sách đỉnh: ' + this.vertexList.size + ' đỉnh <br/>' + this.vertexList.getList();
         vertexList += '<br/><br/>';
 
-        let childList = '';
+        let edgeList = '';
         let temp = this.vertexList.head;
         let count = this.vertexList.size;
         while (temp) {
-            childList = count-- + '.&ensp;' + temp.getName() + '&nbsp;<span style="color: brown; font-weight: 400; font-style: italic;">(' + temp.childList.size + ' đỉnh con):&ensp;</span>' + temp.getChildList() + '<br/>' + childList;
+            edgeList = count-- + '.&ensp;' + temp.getName() + '&nbsp;<span style="color: brown; font-weight: 400; font-style: italic;">(' + temp.edgeList.size + ' đỉnh con):&ensp;</span>' + temp.getEdgeList() + '<br/>' + edgeList;
             temp = temp.next;
         }
 
-        return vertexList + 'Danh sách đỉnh con: <br/>' + childList;
+        return vertexList + 'Danh sách đỉnh con: <br/>' + edgeList;
     }
 }

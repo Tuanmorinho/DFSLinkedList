@@ -2,6 +2,7 @@ let graph;
 
 graph = new Graph();
 
+// Hàm cài đặt sẵn một đồ thị làm ví dụ nhanh
 function addSampleVertex() {
     graph.addVertex('A');
     graph.addVertex('B');
@@ -9,7 +10,6 @@ function addSampleVertex() {
     graph.addVertex('D');
     graph.addVertex('E');
     graph.addVertex('F');
-    graph.addVertex('G');
     graph.addEdge('A', 'B');
     graph.addEdge('A', 'C');
     graph.addEdge('A', 'D');
@@ -21,17 +21,20 @@ function addSampleVertex() {
     printGraphInfo();
 }
 
-function DFS() {
-    const vertexNameStart = document.getElementById('xp').value;
-    const vertexNameEnd = document.getElementById('dich').value;
-    if (vertexNameStart.trim() === '' || vertexNameEnd.trim() === '') return;
-    graph.DFS(vertexNameStart.trim(), vertexNameEnd.trim());
-}
-
+// Hiển thị ra Đồ thị
 function printGraphInfo() {
     document.getElementById('result').innerHTML = graph.getInfor();
 }
 
+// DFS
+function DFS() {
+    const vertexNameStart = document.getElementById('xp').value;
+    const vertexNameEnd = document.getElementById('dich').value;
+    if (vertexNameStart.trim() === '' || vertexNameEnd.trim() === '') return;
+    graph.callDFS(vertexNameStart.trim(), vertexNameEnd.trim());
+}
+
+// Thêm đỉnh đồ thị
 function addVertex() {
     const vertexName = document.getElementById('vertex').value;
     if (vertexName.trim() === '') return;
@@ -40,6 +43,7 @@ function addVertex() {
     printGraphInfo();
 }
 
+// Thêm cạnh
 function addEdge() {
     const vertexAName = document.getElementById('vertexA').value;
     const vertexBName = document.getElementById('vertexB').value;
@@ -50,6 +54,7 @@ function addEdge() {
     printGraphInfo();
 }
 
+// Xóa đỉnh
 function removeVertex() {
     const vertexName = document.getElementById('vertex').value;
     if (vertexName.trim() === '') return;
@@ -58,6 +63,7 @@ function removeVertex() {
     printGraphInfo();
 }
 
+// Xóa cạnh
 function removeEgde() {
     const vertexAName = document.getElementById('vertexA').value;
     const vertexBName = document.getElementById('vertexB').value;

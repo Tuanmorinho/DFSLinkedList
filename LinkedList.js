@@ -66,4 +66,15 @@ class LinkedList {
         }
         return output.substring(0, output.length - 2);
     }
+
+    // Hàm in ra tập DONG
+    print() {
+        let temp = this.head;
+        let output = '';
+        while (temp) {
+            output = temp.getName().data + ', ' + output;
+            temp = temp.next;
+        }
+        return output.substring(0, output.length - 2);
+    }
 }
