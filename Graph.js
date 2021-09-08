@@ -83,17 +83,21 @@ class Graph {
 
     // Hiển thị Đồ thị
     getInfor() {
-        let vertexList = 'Danh sách đỉnh: ' + this.vertexList.size + ' đỉnh <br/>' + this.vertexList.getList();
+        let vertexList = 'Danh sách đỉnh: ' + this.vertexList.size +
+            ' đỉnh <br/>' + this.vertexList.getList();
         vertexList += '<br/><br/>';
 
         let edgeList = '';
         let temp = this.vertexList.head;
         let count = this.vertexList.size;
         while (temp) {
-            edgeList = count-- + '.&ensp;' + temp.getName() + '&nbsp;<span style="color: brown; font-weight: 400; font-style: italic;">(' + temp.edgeList.size + ' đỉnh con):&ensp;</span>' + temp.getEdgeList() + '<br/>' + edgeList;
+            edgeList = count-- + '.&ensp;' + temp.getName() +
+                '&nbsp;<span style="color: brown; font-weight: 400; font-style: italic;">(' +
+                temp.edgeList.size + ' đỉnh con):&ensp;</span>' +
+                temp.getEdgeList() + '<br/>' + edgeList;
+
             temp = temp.next;
         }
-
         return vertexList + 'Danh sách đỉnh con: <br/>' + edgeList;
     }
 

@@ -18,18 +18,6 @@ function addSampleVertex() {
     // graph.addEdge('C', 'F');
     // graph.addEdge('E', 'F');
 
-    // graph.addVertex('S');
-    // graph.addVertex('A');
-    // graph.addVertex('B');
-    // graph.addVertex('C');
-    // graph.addVertex('D');
-    // graph.addEdge('S', 'A');
-    // graph.addEdge('S', 'B');
-    // graph.addEdge('S', 'C');
-    // graph.addEdge('D', 'A');
-    // graph.addEdge('D', 'B');
-    // graph.addEdge('D', 'C');
-
     graph.addVertex('A');
     graph.addVertex('B');
     graph.addVertex('C');
@@ -41,12 +29,9 @@ function addSampleVertex() {
     graph.addEdge('A', 'B');
     graph.addEdge('A', 'C');
     graph.addEdge('A', 'D');
-
     graph.addEdge('B', 'E');
     graph.addEdge('C', 'E');
-
     graph.addEdge('D', 'F');
-
     graph.addEdge('C', 'F');
     graph.addEdge('F', 'G');
     graph.addEdge('G', 'H');
