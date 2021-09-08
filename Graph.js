@@ -72,30 +72,6 @@ class Graph {
         }
     }
 
-    DFS(linkedlist) {
-        const vertex = linkedlist.getNode(1).data;
-        vertex.visited = true;
-        for (let i = vertex.edgeList.size; i > 0; i--) {
-            const node = vertex.edgeList.getNode(i);
-            const vertexB = this.vertexList.searchNode(node.vertexB);
-            if (vertexB && !vertexB.visited) {
-                linkedlist.insertNode(new Node(vertexB));
-                this.DFS(linkedlist);
-            }
-        }
-    }
-
-    callDFS(fromVertex) {
-        this.resetVisited();
-        const vertexStart = this.vertexList.searchNode(fromVertex);
-        if (vertexStart) {
-            let linkedlist = new LinkedList();
-            linkedlist.insertNode(new Node(vertexStart));
-            this.DFS(linkedlist);
-            console.log('DONG = { ' + linkedlist.print() + ' }');
-        }
-    }
-
     // Reset biến boolean check đỉnh đã duyệt
     resetVisited() {
         let temp = this.vertexList.head;
@@ -119,5 +95,29 @@ class Graph {
         }
 
         return vertexList + 'Danh sách đỉnh con: <br/>' + edgeList;
+    }
+
+    DFS(linkedlist) {
+        const vertex = linkedlist.getNode(1).data;
+        vertex.visited = true;
+        for (let i = vertex.edgeList.size; i > 0; i--) {
+            const node = vertex.edgeList.getNode(i);
+            const vertexB = this.vertexList.searchNode(node.vertexB);
+            if (vertexB && !vertexB.visited) {
+                linkedlist.insertNode(new Node(vertexB));
+                this.DFS(linkedlist);
+            }
+        }
+    }
+
+    callDFS(fromVertex) {
+        this.resetVisited();
+        const vertexStart = this.vertexList.searchNode(fromVertex);
+        if (vertexStart) {
+            let linkedlist = new LinkedList();
+            linkedlist.insertNode(new Node(vertexStart));
+            this.DFS(linkedlist);
+            console.log('DONG = { ' + linkedlist.print() + ' }');
+        }
     }
 }
