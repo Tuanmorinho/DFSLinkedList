@@ -6,6 +6,10 @@ class LinkedList {
         this.size = 0;
     }
 
+    isEmpty() {
+        return this.size === 0;
+    }
+
     // Hàm chèn Node
     insertNode(node) {
         node.next = this.head;

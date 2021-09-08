@@ -4,19 +4,52 @@ graph = new Graph();
 
 // Hàm cài đặt sẵn một đồ thị làm ví dụ nhanh
 function addSampleVertex() {
+    // graph.addVertex('A');
+    // graph.addVertex('B');
+    // graph.addVertex('C');
+    // graph.addVertex('D');
+    // graph.addVertex('E');
+    // graph.addVertex('F');
+    // graph.addEdge('A', 'B');
+    // graph.addEdge('A', 'C');
+    // graph.addEdge('A', 'D');
+    // graph.addEdge('B', 'E');
+    // graph.addEdge('C', 'D');
+    // graph.addEdge('C', 'F');
+    // graph.addEdge('E', 'F');
+
+    // graph.addVertex('S');
+    // graph.addVertex('A');
+    // graph.addVertex('B');
+    // graph.addVertex('C');
+    // graph.addVertex('D');
+    // graph.addEdge('S', 'A');
+    // graph.addEdge('S', 'B');
+    // graph.addEdge('S', 'C');
+    // graph.addEdge('D', 'A');
+    // graph.addEdge('D', 'B');
+    // graph.addEdge('D', 'C');
+
     graph.addVertex('A');
     graph.addVertex('B');
     graph.addVertex('C');
     graph.addVertex('D');
     graph.addVertex('E');
     graph.addVertex('F');
+    graph.addVertex('G');
+    graph.addVertex('H');
     graph.addEdge('A', 'B');
     graph.addEdge('A', 'C');
     graph.addEdge('A', 'D');
+
     graph.addEdge('B', 'E');
-    graph.addEdge('C', 'D');
+    graph.addEdge('C', 'E');
+
+    graph.addEdge('D', 'F');
+
     graph.addEdge('C', 'F');
-    graph.addEdge('E', 'F');
+    graph.addEdge('F', 'G');
+    graph.addEdge('G', 'H');
 
     printGraphInfo();
 }
@@ -26,12 +59,10 @@ function printGraphInfo() {
     document.getElementById('result').innerHTML = graph.getInfor();
 }
 
-// DFS
 function DFS() {
     const vertexNameStart = document.getElementById('xp').value;
-    const vertexNameEnd = document.getElementById('dich').value;
-    if (vertexNameStart.trim() === '' || vertexNameEnd.trim() === '') return;
-    graph.callDFS(vertexNameStart.trim(), vertexNameEnd.trim());
+    if (vertexNameStart.trim() === '') return;
+    graph.callDFS(vertexNameStart.trim());
 }
 
 // Thêm đỉnh đồ thị

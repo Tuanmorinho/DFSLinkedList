@@ -72,35 +72,26 @@ class Graph {
         }
     }
 
-    DFS(linkedlist, vertexEnd) {
+    DFS(linkedlist) {
         const vertex = linkedlist.getNode(1).data;
         vertex.visited = true;
-        if (vertex.data !== vertexEnd) {
-            for (let i = vertex.edgeList.size; i > 0; i--) {
-                const node = vertex.edgeList.getNode(i);
-                const vertexB = this.vertexList.searchNode(node.vertexB);
-                if (vertexB && !vertexB.visited) {
-                    if (vertexB.data === vertexEnd) {
-                        linkedlist.insertNode(new Node(vertexB));
-                        break;
-                    } else {
-                        linkedlist.insertNode(new Node(vertexB));
-                        this.DFS(linkedlist, vertexEnd);
-                    }
-                    break;
-                }
+        for (let i = vertex.edgeList.size; i > 0; i--) {
+            const node = vertex.edgeList.getNode(i);
+            const vertexB = this.vertexList.searchNode(node.vertexB);
+            if (vertexB && !vertexB.visited) {
+                linkedlist.insertNode(new Node(vertexB));
+                this.DFS(linkedlist);
             }
         }
     }
 
-    callDFS(fromVertex, toVertex) {
+    callDFS(fromVertex) {
         this.resetVisited();
         const vertexStart = this.vertexList.searchNode(fromVertex);
-        const vertexEnd = this.vertexList.searchNode(toVertex);
-        if (vertexStart && vertexEnd) {
+        if (vertexStart) {
             let linkedlist = new LinkedList();
             linkedlist.insertNode(new Node(vertexStart));
-            this.DFS(linkedlist, vertexEnd.data);
+            this.DFS(linkedlist);
             console.log('DONG = { ' + linkedlist.print() + ' }');
         }
     }
